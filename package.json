@@ -1,0 +1,31 @@
+{
+  "name": "phonebook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "loch": "nodemon --exec \"heroku local\" --signal SIGTERM",
+    "build:ui": "rm -rf build && cd ../3.phonebook_front/ && npm run build --prod && cp -r build  ../3.phonebook_back/",
+    "deploy": "git push heroku master",
+    "logs:prod": "heroku logs --tail",
+    "deploy:full": "npm run build:ui && git add . && git commit -m \"heroku uibuild\" && npm run deploy",
+    "deploy:full2": "npm run build:ui && git add . && git commit -m \"heroku uibuild\" && npm run deploy && heroku open && npm run logs:prod",
+    "deploy:back": "git add . && git commit -m \"heroku uibuild\" && npm run deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.9",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3"
+  }
+}
